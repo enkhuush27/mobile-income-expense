@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:income_expense/main.dart';
+import './register.dart';
 
 class Onboard extends StatefulWidget {
   const Onboard({super.key});
@@ -72,7 +73,12 @@ class _OnboardState extends State<Onboard> {
                     style: TextStyle(fontWeight: FontWeight.w400),
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                            builder: (context) => RegisterScreen()),
+                      );
+                    },
                     child: Text(
                       "Нэвртэх",
                       style: TextStyle(
@@ -82,7 +88,7 @@ class _OnboardState extends State<Onboard> {
                     ),
                   ),
                 ],
-              )
+              ),
             ],
           ),
         ),

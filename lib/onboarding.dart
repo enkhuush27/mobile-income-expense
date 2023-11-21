@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:income_expense/main.dart';
 import './register.dart';
+import './login.dart';
 
 class Onboard extends StatefulWidget {
   const Onboard({super.key});
@@ -35,7 +36,11 @@ class _OnboardState extends State<Onboard> {
               ),
               SizedBox(height: 30),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => RegisterScreen()),
+                  );
+                },
                 style: ElevatedButton.styleFrom(
                     shadowColor: Color(0xFF438883),
                     elevation: 40,
@@ -75,8 +80,7 @@ class _OnboardState extends State<Onboard> {
                   TextButton(
                     onPressed: () {
                       Navigator.of(context).push(
-                        MaterialPageRoute(
-                            builder: (context) => RegisterScreen()),
+                        MaterialPageRoute(builder: (context) => LoginScreen()),
                       );
                     },
                     child: Text(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './login.dart';
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key});
@@ -10,29 +11,59 @@ class RegisterScreen extends StatelessWidget {
         backgroundColor: Color(0xFFF0F0F0),
         body: SingleChildScrollView(
           child: Column(children: <Widget>[
-            Container(
-              width: double.infinity,
-              height: 250,
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [Color(0xFF429690), Color(0xFF2A7C76)],
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
+            Stack(
+              children: <Widget>[
+                Container(
+                  width: double.infinity,
+                  height: 250,
+                  decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [Color(0xFF429690), Color(0xFF2A7C76)],
+                      begin: Alignment.centerLeft,
+                      end: Alignment.centerRight,
+                    ),
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.elliptical(160, 30),
+                      bottomRight: Radius.elliptical(160, 30),
+                    ),
+                  ),
+                  child: const Center(
+                    child: Text(
+                      "Тавтай морилно уу",
+                      style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 22,
+                          color: Color(0xFFFFFFFF)),
+                    ),
+                  ),
                 ),
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.elliptical(160, 30),
-                  bottomRight: Radius.elliptical(160, 30),
+                Container(
+                  width: 50,
+                  height: 100,
+                  decoration: const BoxDecoration(
+                    color: Color(0xFFACF0FF),
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(50),
+                      bottomRight: Radius.circular(50),
+                    ),
+                  ),
                 ),
-              ),
-              child: const Center(
-                child: Text(
-                  "Тавтай морилно уу",
-                  style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      fontSize: 22,
-                      color: Color(0xFFFFFFFF)),
+                Container(
+                  width: 100,
+                  height: 50,
+                  decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [Color(0xA65DD6F0), Color(0xA65DD6F0)],
+                      begin: Alignment.centerLeft,
+                      end: Alignment.centerRight,
+                    ),
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(50),
+                      bottomRight: Radius.circular(50),
+                    ),
+                  ),
                 ),
-              ),
+              ],
             ),
             SizedBox(
               height: 50,
@@ -150,9 +181,9 @@ class RegisterScreen extends StatelessWidget {
                 ),
                 TextButton(
                   onPressed: () {
-                    // Navigator.of(context).push(
-                    //   MaterialPageRoute(builder: (context) => LoginScreen()),
-                    // );
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => LoginScreen()),
+                    );
                   },
                   child: Text(
                     "Нэвртэх",

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './cons/header.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -17,65 +18,59 @@ class _HomeScreenState extends State<HomeScreen> {
           children: <Widget>[
             Stack(
               children: [
-                Container(
-                  width: double.infinity,
-                  height: 250,
-                  decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [Color(0xFF429690), Color(0xFF2A7C76)],
-                      begin: Alignment.centerLeft,
-                      end: Alignment.centerRight,
-                    ),
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.elliptical(160, 30),
-                      bottomRight: Radius.elliptical(160, 30),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  left: 100,
-                  top: -20,
-                  child: Container(
-                    width: 90,
-                    height: 90,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                        color: Color(0x26FFFFFF),
-                        width: 10.0,
+                Header(),
+                Column(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(left: 20, top: 60),
+                      child: Text(
+                        "Өглөөний мэнд?",
+                        style: TextStyle(
+                          color: Color(0xFFFFFFFF),
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                     ),
-                  ),
-                ),
-                Positioned(
-                  left: 30,
-                  child: Container(
-                    width: 110,
-                    height: 110,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                        color: Color(0x1AFFFFFF),
-                        width: 10.0,
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      "Б.Энхүүш",
+                      style: TextStyle(
+                        color: Color(0xFFFFFFFF),
+                        fontWeight: FontWeight.w500,
+                        fontSize: 18,
                       ),
                     ),
-                  ),
+                  ],
                 ),
                 Positioned(
-                  left: -30,
-                  top: 20,
-                  child: Container(
-                    width: 130,
-                    height: 130,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                        color: Color(0x0DFFFFFF),
-                        width: 10.0,
-                      ),
-                    ),
+                  right: 20,
+                  top: 60,
+                  child: Icon(
+                    Icons.notification_add_outlined,
+                    color: Color(0xFFFFFFFF),
+                    size: 40,
                   ),
                 ),
+                Padding(
+                  padding: EdgeInsets.all(20),
+                  child: Stack(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(top: 120),
+                        width: double.infinity,
+                        height: 180,
+                        decoration: const BoxDecoration(
+                          color: Color(0xFF2F7E79),
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(20),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                )
               ],
             ),
           ],

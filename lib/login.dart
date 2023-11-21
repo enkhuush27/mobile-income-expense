@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:income_expense/home.dart';
+import 'package:income_expense/register.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -62,13 +64,13 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ),
                 ),
+                Padding(
+                  padding: EdgeInsets.only(top: 170),
+                  child: Image(
+                    image: AssetImage("assets/bg-login.png"),
+                  ),
+                )
               ],
-            ),
-            // Image(
-            //   image: AssetImage(),
-            // ),
-            SizedBox(
-              height: 15,
             ),
             Padding(
               padding: EdgeInsets.only(right: 30, left: 30),
@@ -84,6 +86,83 @@ class LoginScreen extends StatelessWidget {
                   contentPadding:
                       EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                 ),
+              ),
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            Padding(
+              padding: EdgeInsets.only(right: 30, left: 30),
+              child: TextFormField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(25),
+                    borderSide: BorderSide.none,
+                  ),
+                  hintText: "Enter your password",
+                  fillColor: Color(0xFFFFFFFF),
+                  filled: true,
+                  contentPadding:
+                      EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 40,
+            ),
+            Padding(
+              padding: EdgeInsets.only(right: 30, left: 30),
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => HomeScreen(),
+                    ),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(40)),
+                    padding: EdgeInsets.all(0)),
+                child: Ink(
+                  decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                        colors: [Color(0xFF63B5AF), Color(0xFF438883)],
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight),
+                    borderRadius: BorderRadius.all(Radius.circular(40)),
+                  ),
+                  child: Container(
+                    constraints: const BoxConstraints(
+                        minWidth: 120.0,
+                        minHeight: 70.0), // min sizes for Material buttons
+                    alignment: Alignment.center,
+                    child: const Text(
+                      "Нэвтрэх",
+                      style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.w800,
+                          color: Color(0xFFFFFFFF)),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => RegisterScreen(),
+                  ),
+                );
+              },
+              child: Text(
+                "Бүртгүүлэх",
+                style: TextStyle(
+                    color: Color(0xFF32819A), fontWeight: FontWeight.w400),
               ),
             ),
           ]),

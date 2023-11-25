@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:income_expense/cons/bottomNav.dart';
+import 'package:income_expense/cons/profile.dart';
 import './cons/header.dart';
 import './cons/listTileCons.dart';
 
@@ -63,6 +65,12 @@ class _HomeScreenState extends State<HomeScreen> {
                         width: double.infinity,
                         height: 180,
                         decoration: const BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                                color: Color(0x402F7E79),
+                                offset: Offset(0, 10),
+                                blurRadius: 4)
+                          ],
                           color: Color(0xFF2F7E79),
                           borderRadius: BorderRadius.all(
                             Radius.circular(20),
@@ -195,8 +203,91 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-            dListTile(),
+            Expanded(
+              child: Column(
+                children: [
+                  Container(height: 250, child: dListTile()),
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: 20, right: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text(
+                    "Send Again",
+                    style: TextStyle(
+                        color: Color(0xFF222222),
+                        fontWeight: FontWeight.w600,
+                        fontSize: 18),
+                  ),
+                  Text(
+                    "See all",
+                    style: TextStyle(
+                      color: Color(0xFF666666),
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Stack(
+              children: [
+                Profile(),
+              ],
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            // BottomNav(),
           ],
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: Container(
+          width: 65,
+          height: 65,
+          child: FloatingActionButton(
+            backgroundColor: Color(0xFF438883),
+            onPressed: () {},
+            child: const Icon(Icons.add, size: 28),
+          ),
+        ),
+        bottomNavigationBar: BottomAppBar(
+          color: Color(0xFFFFFFFFF),
+          shape: CircularNotchedRectangle(),
+          //padding: EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 5),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              IconButton(
+                onPressed: () {},
+                icon: Icon(Icons.home),
+                iconSize: 45,
+                color: Color(0xFFAAAAAA),
+              ),
+              IconButton(
+                onPressed: () {},
+                icon: Icon(Icons.bar_chart_outlined),
+                iconSize: 45,
+                color: Color(0xFFAAAAAA),
+              ),
+              IconButton(
+                onPressed: () {},
+                icon: Icon(Icons.wallet_outlined),
+                iconSize: 45,
+                color: Color(0xFFAAAAAA),
+              ),
+              IconButton(
+                  onPressed: () {},
+                  icon: Icon(Icons.person),
+                  iconSize: 45,
+                  color: Color(0xFFAAAAAA)),
+            ],
+          ),
         ),
       ),
     );

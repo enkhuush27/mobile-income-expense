@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:income_expense/connectWallet.dart';
 
-class dListTile extends StatefulWidget {
-  const dListTile({super.key});
+class WaitList extends StatefulWidget {
+  const WaitList({super.key});
 
   @override
-  State<dListTile> createState() => _dListTileState();
+  State<WaitList> createState() => _WaitListState();
 }
 
-class _dListTileState extends State<dListTile> {
+class _WaitListState extends State<WaitList> {
   var title = ["Upwork", "Facebook", "Paypal", "Youtube"];
 
   @override
@@ -36,12 +37,22 @@ class _dListTileState extends State<dListTile> {
             "Өнөөдөр",
             style: TextStyle(fontWeight: FontWeight.w400),
           ),
-          trailing: Text(
-            "+ \$ 850.00",
-            style: TextStyle(
-              color: Color(0xFF25A969),
-              fontSize: 18,
-              fontWeight: FontWeight.w500,
+          trailing: Container(
+            width: 90,
+            height: 35,
+            decoration: BoxDecoration(
+              color: Color(0xFFECF9F8),
+              borderRadius: BorderRadius.circular(20),
+            ),
+            alignment: Alignment.center,
+            child: TextButton(
+              onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => ConnectWallet(),
+              )),
+              child: Text(
+                "Төлөх",
+                style: TextStyle(color: Color(0xFF438883), fontSize: 16),
+              ),
             ),
           ),
         ),

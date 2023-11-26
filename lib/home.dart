@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:income_expense/cons/bottomNav.dart';
+import 'package:income_expense/chart.dart';
 import 'package:income_expense/cons/profile.dart';
+import 'package:income_expense/wallet.dart';
 import './cons/header.dart';
 import './cons/listTileCons.dart';
 
@@ -267,22 +268,40 @@ class _HomeScreenState extends State<HomeScreen> {
                 onPressed: () {},
                 icon: Icon(Icons.home),
                 iconSize: 45,
-                color: Color(0xFFAAAAAA),
+                color: Color(0xFF549994),
               ),
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => ChartScreen(),
+                    ),
+                  );
+                },
                 icon: Icon(Icons.bar_chart_outlined),
                 iconSize: 45,
                 color: Color(0xFFAAAAAA),
               ),
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => WalletScreen(),
+                    ),
+                  );
+                },
                 icon: Icon(Icons.wallet_outlined),
                 iconSize: 45,
                 color: Color(0xFFAAAAAA),
               ),
               IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => WalletScreen(),
+                      ),
+                    );
+                  },
                   icon: Icon(Icons.person),
                   iconSize: 45,
                   color: Color(0xFFAAAAAA)),

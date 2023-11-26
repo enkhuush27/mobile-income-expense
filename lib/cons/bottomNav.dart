@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:income_expense/chart.dart';
+import 'package:income_expense/home.dart';
+import 'package:income_expense/wallet.dart';
 
 class BottomNav extends StatefulWidget {
   const BottomNav({super.key});
@@ -11,32 +14,66 @@ class _BottomNavState extends State<BottomNav> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBody: true,
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: Container(
-        width: 70,
-        height: 70,
-        child: FloatingActionButton(
-          backgroundColor: Color(0xFF438883),
-          onPressed: () {},
-          child: const Icon(Icons.add, size: 28),
+      extendBodyBehindAppBar: true,
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          boxShadow: <BoxShadow>[
+            BoxShadow(
+              color: Color(0xFFAAAAAA),
+              blurRadius: 10,
+            ),
+          ],
         ),
-      ),
-      bottomNavigationBar: BottomAppBar(
-        color: Color(0xFFFFFFFFF),
-        shape: const CircularNotchedRectangle(),
-        child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-          IconButton(onPressed: () {}, icon: Icon(Icons.home), iconSize: 40),
-          IconButton(
-              onPressed: () {},
+        child: BottomAppBar(
+          elevation: 10,
+          color: Color(0xFFFFFFFFF),
+          shape: const CircularNotchedRectangle(),
+          child:
+              Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+            IconButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => HomeScreen(),
+                  ),
+                );
+              },
+              icon: Icon(Icons.home),
+              iconSize: 45,
+              color: Color(0xFFAAAAAA),
+            ),
+            IconButton(
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => ChartScreen(),
+                ));
+              },
               icon: Icon(Icons.bar_chart_outlined),
-              iconSize: 40),
-          IconButton(
-              onPressed: () {},
+              iconSize: 45,
+              color: Color(0xFFAAAAAA),
+            ),
+            IconButton(
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => WalletScreen(),
+                ));
+              },
               icon: Icon(Icons.wallet_outlined),
-              iconSize: 40),
-          IconButton(onPressed: () {}, icon: Icon(Icons.person), iconSize: 40),
-        ]),
+              iconSize: 45,
+              color: Color(0xFFAAAAAA),
+            ),
+            IconButton(
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => WalletScreen(),
+                ));
+              },
+              icon: Icon(Icons.person),
+              iconSize: 45,
+              color: Color(0xFFAAAAAA),
+            ),
+          ]),
+        ),
       ),
     );
   }

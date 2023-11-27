@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:income_expense/main.dart';
 import './register.dart';
 import './login.dart';
 

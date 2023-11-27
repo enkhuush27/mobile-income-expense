@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:income_expense/cons/body.dart';
 import 'package:income_expense/cons/bottomNav.dart';
 import 'package:income_expense/cons/header.dart';
+import 'package:income_expense/cons/listTileCons.dart';
+import 'package:income_expense/cons/textForm.dart';
 import 'package:income_expense/home.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
 
@@ -15,7 +17,7 @@ class ConnectWallet extends StatefulWidget {
 class _ConnectWalletState extends State<ConnectWallet> {
   String cardNumber = '1234 5678 9012 3456';
   String expiryDate = '12/23';
-  String cardHolderName = 'John Doe';
+  String cardHolderName = 'Enkhuush';
   String cvvCode = '123';
   bool isCvvFocused = false;
   @override
@@ -62,7 +64,7 @@ class _ConnectWalletState extends State<ConnectWallet> {
                       ]),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 160, left: 40, right: 40),
+                  padding: EdgeInsets.only(top: 150, left: 30, right: 30),
                   child: DefaultTabController(
                     length: 2,
                     child: Column(
@@ -114,18 +116,180 @@ class _ConnectWalletState extends State<ConnectWallet> {
                           ),
                         ),
                         Container(
-                          height: 400,
+                          height: 510,
                           child: TabBarView(
                             children: [
+                              SingleChildScrollView(
+                                child: Column(
+                                  children: [
+                                    CreditCardWidget(
+                                      cardNumber: cardNumber,
+                                      expiryDate: expiryDate,
+                                      cardHolderName: cardHolderName,
+                                      cvvCode: cvvCode,
+                                      showBackView: isCvvFocused,
+                                      onCreditCardWidgetChange:
+                                          (CreditCardBrand) {},
+                                      cardBgColor: Color(0xFF2A7C76),
+                                      cardType: CardType.visa,
+                                      isSwipeGestureEnabled: true,
+                                      bankName: "Wells Fargo",
+                                      isHolderNameVisible: true,
+                                    ),
+                                    Text(
+                                      "Картын мэдээллээ нэмэх",
+                                      style: TextStyle(
+                                          color: Color(0xFF000000),
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                    Text(
+                                      "Энд холбох  карт нь зөвхөн  таны нэр дээр байх ёстой.",
+                                      style: TextStyle(
+                                          color: Color(0xFF666666),
+                                          fontWeight: FontWeight.w400),
+                                    ),
+                                    SizedBox(
+                                      height: 15,
+                                    ),
+                                    Column(children: [
+                                      TextForm("Карт дээрх нэр"),
+                                      SizedBox(
+                                        height: 15,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Container(
+                                            width: 200,
+                                            child: TextForm("Картын дугаар"),
+                                          ),
+                                          Container(
+                                            width: 125,
+                                            child: TextForm("CVC"),
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: 15,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Container(
+                                            width: 200,
+                                            child: TextForm("Дуусах хугацаа"),
+                                          ),
+                                          Container(
+                                            width: 125,
+                                            child: TextForm("ZIP"),
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: 15,
+                                      ),
+                                      ElevatedButton(
+                                        onPressed: () {
+                                          Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  HomeScreen(),
+                                            ),
+                                          );
+                                        },
+                                        style: ElevatedButton.styleFrom(
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                          ),
+                                          padding: EdgeInsets.all(0),
+                                        ),
+                                        child: Ink(
+                                          decoration: BoxDecoration(
+                                            color: Color(0xFFFFFFFF),
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                            border: Border.all(
+                                              color: Color(0xFF69AEA9),
+                                            ),
+                                          ),
+                                          child: Container(
+                                            constraints: BoxConstraints(
+                                              minWidth: 100.0,
+                                              minHeight: 70.0,
+                                            ),
+                                            alignment: Alignment.center,
+                                            child: Text(
+                                              "Баталгаажуулах",
+                                              style: TextStyle(
+                                                fontSize: 24,
+                                                fontWeight: FontWeight.w800,
+                                                color: Color(0xFF69AEA9),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 15,
+                                      )
+                                    ]),
+                                  ],
+                                ),
+                              ),
                               Container(
-                                child: CreditCardWidget(
-                                  cardNumber: cardNumber,
-                                  expiryDate: expiryDate,
-                                  cardHolderName: cardHolderName,
-                                  cvvCode: cvvCode,
-                                  showBackView: isCvvFocused,
-                                  onCreditCardWidgetChange:
-                                      (CreditCardBrand) {},
+                                padding: EdgeInsets.only(top: 20),
+                                height: 510,
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      child: Container(
+                                        height: 80,
+                                        width: double.infinity,
+                                        alignment: Alignment.center,
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(25),
+                                            color: Color(0x1A438883)),
+                                        child: ListTile(
+                                          leading: Container(
+                                            width: 50,
+                                            height: 50,
+                                            decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              borderRadius:
+                                                  BorderRadius.circular(25),
+                                            ),
+                                            child: Transform.scale(
+                                              scale: 0.85,
+                                              child: Icon(
+                                                Icons.account_balance,
+                                                size: 30,
+                                                color: Color(0xFF438883),
+                                              ),
+                                            ),
+                                          ),
+                                          title: Text(
+                                            "Bank Link",
+                                            style: TextStyle(
+                                                color: Color(0xFF438883),
+                                                fontWeight: FontWeight.w600),
+                                          ),
+                                          subtitle: Text(
+                                            "Connect your bank account to deposit & fund",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w500,
+                                                color: Color(0xFF438883)),
+                                          ),
+                                          trailing: Icon(Icons.check,
+                                              color: Color(0xFF438883)),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ],

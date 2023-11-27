@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:income_expense/login.dart';
+import 'package:income_expense/register.dart';
 import 'onboarding.dart';
 import 'splash_screen.dart';
 
@@ -18,6 +20,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const SplashScreen(),
         '/onboard': (context) => Onboard(),
+        '/loginScreen': (context) => LoginScreen(),
+        '/signupScreen': (context) => RegisterScreen()
       },
       theme: ThemeData(
         primarySwatch: Colors.blue,

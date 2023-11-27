@@ -1,6 +1,7 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:income_expense/cons/header.dart';
+import 'package:income_expense/cons/DatePickerTextField.dart';
 
 const List<String> list = ['Netflix', "Youtube", "Upwork"];
 
@@ -136,29 +137,30 @@ class _AddExpenseState extends State<AddExpense> {
                             SizedBox(
                               height: 10,
                             ),
-                            TextFormField(
-                              decoration: InputDecoration(
-                                border: OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10)),
-                                  borderSide: BorderSide(
-                                    color: Color(0xFFDDDDDD),
-                                  ),
-                                ),
-                                labelStyle: TextStyle(color: Color(0xFFDDDDDD)),
-                                fillColor: Color(0xFFFFFFFF),
-                                hintText: "Tue, 22 Feb 2022",
-                                suffixIcon: Icon(Icons.calendar_today),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(10)),
-                                  borderSide: BorderSide(
-                                    color: Color(0xFF438883),
-                                  ),
-                                ),
-                              ),
-                              style: TextStyle(color: Color(0xFF438883)),
-                            ),
+                            DatePickerTextField(),
+                            // TextFormField(
+                            //   decoration: InputDecoration(
+                            //     border: OutlineInputBorder(
+                            //       borderRadius:
+                            //           BorderRadius.all(Radius.circular(10)),
+                            //       borderSide: BorderSide(
+                            //         color: Color(0xFFDDDDDD),
+                            //       ),
+                            //     ),
+                            //     labelStyle: TextStyle(color: Color(0xFFDDDDDD)),
+                            //     fillColor: Color(0xFFFFFFFF),
+                            //     hintText: "Tue, 22 Feb 2022",
+                            //     suffixIcon: Icon(Icons.calendar_today),
+                            //     focusedBorder: OutlineInputBorder(
+                            //       borderRadius:
+                            //           BorderRadius.all(Radius.circular(10)),
+                            //       borderSide: BorderSide(
+                            //         color: Color(0xFF438883),
+                            //       ),
+                            //     ),
+                            //   ),
+                            //   style: TextStyle(color: Color(0xFF438883)),
+                            // ),
                             SizedBox(
                               height: 20,
                             ),

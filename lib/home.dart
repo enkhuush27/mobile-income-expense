@@ -207,7 +207,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Expanded(
               child: Column(
                 children: [
-                  Container(height: 250, child: dListTile()),
+                  Container(height: 230, child: dListTile()),
                 ],
               ),
             ),

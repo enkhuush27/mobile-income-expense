@@ -56,7 +56,7 @@ class _WalletScreenState extends State<WalletScreen> {
           ),
           Container(
             width: double.infinity,
-            height: 600,
+            height: 580,
             margin: EdgeInsets.only(top: 130),
             decoration: const BoxDecoration(
               color: Color(0xFFFFFFFFF),

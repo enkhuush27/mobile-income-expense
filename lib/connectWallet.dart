@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:income_expense/cons/body.dart';
 import 'package:income_expense/cons/bottomNav.dart';
 import 'package:income_expense/cons/header.dart';
-import 'package:income_expense/cons/listTileCons.dart';
-import 'package:income_expense/cons/waitingList.dart';
 import 'package:income_expense/home.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
 
@@ -15,6 +13,11 @@ class ConnectWallet extends StatefulWidget {
 }
 
 class _ConnectWalletState extends State<ConnectWallet> {
+  String cardNumber = '1234 5678 9012 3456';
+  String expiryDate = '12/23';
+  String cardHolderName = 'John Doe';
+  String cvvCode = '123';
+  bool isCvvFocused = false;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -108,6 +111,24 @@ class _ConnectWalletState extends State<ConnectWallet> {
                               borderRadius: BorderRadius.circular(60),
                               color: Colors.white,
                             ),
+                          ),
+                        ),
+                        Container(
+                          height: 400,
+                          child: TabBarView(
+                            children: [
+                              Container(
+                                child: CreditCardWidget(
+                                  cardNumber: cardNumber,
+                                  expiryDate: expiryDate,
+                                  cardHolderName: cardHolderName,
+                                  cvvCode: cvvCode,
+                                  showBackView: isCvvFocused,
+                                  onCreditCardWidgetChange:
+                                      (CreditCardBrand) {},
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ],

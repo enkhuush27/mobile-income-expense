@@ -28,51 +28,53 @@ class _BottomNavState extends State<BottomNav> {
           elevation: 10,
           color: Color(0xFFFFFFFFF),
           shape: const CircularNotchedRectangle(),
-          child:
-              Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-            IconButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => HomeScreen(),
-                  ),
-                );
-              },
-              icon: Icon(Icons.home),
-              iconSize: 45,
-              color: Color(0xFFAAAAAA),
-            ),
-            IconButton(
-              onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => ChartScreen(),
-                ));
-              },
-              icon: Icon(Icons.bar_chart_outlined),
-              iconSize: 45,
-              color: Color(0xFFAAAAAA),
-            ),
-            IconButton(
-              onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => WalletScreen(),
-                ));
-              },
-              icon: Icon(Icons.wallet_outlined),
-              iconSize: 45,
-              color: Color(0xFFAAAAAA),
-            ),
-            IconButton(
-              onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => WalletScreen(),
-                ));
-              },
-              icon: Icon(Icons.person),
-              iconSize: 45,
-              color: Color(0xFFAAAAAA),
-            ),
-          ]),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              IconButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => HomeScreen(),
+                    ),
+                  );
+                },
+                icon: Icon(Icons.home),
+                iconSize: 45,
+                color: Color(0xFFAAAAAA),
+              ),
+              IconButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => ChartScreen(),
+                  ));
+                },
+                icon: Icon(Icons.bar_chart_outlined),
+                iconSize: 45,
+                color: Color(0xFFAAAAAA),
+              ),
+              IconButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => WalletScreen(),
+                  ));
+                },
+                icon: Icon(Icons.wallet_outlined),
+                iconSize: 45,
+                color: Color(0xFFAAAAAA),
+              ),
+              IconButton(
+                onPressed: () {
+                  // Navigator.of(context).push(MaterialPageRoute(
+                  //   builder: (context) => WalletScreen(),
+                  // ));
+                },
+                icon: Icon(Icons.person),
+                iconSize: 45,
+                color: Color(0xFFAAAAAA),
+              ),
+            ],
+          ),
         ),
       ),
     );

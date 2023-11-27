@@ -113,7 +113,6 @@ class _AddExpenseState extends State<AddExpense> {
                                 labelStyle: TextStyle(color: Color(0xFFDDDDDD)),
                                 fillColor: Color(0xFFFFFFFF),
                                 hintText: "\$ 0.00",
-                                suffixIcon: Icon(Icons.calendar_today),
                                 focusedBorder: OutlineInputBorder(
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(10)),
@@ -149,6 +148,7 @@ class _AddExpenseState extends State<AddExpense> {
                                 labelStyle: TextStyle(color: Color(0xFFDDDDDD)),
                                 fillColor: Color(0xFFFFFFFF),
                                 hintText: "Tue, 22 Feb 2022",
+                                suffixIcon: Icon(Icons.calendar_today),
                                 focusedBorder: OutlineInputBorder(
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(10)),

@@ -1,5 +1,6 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:income_expense/billDetails.dart';
 import 'package:income_expense/cons/header.dart';
 import 'package:income_expense/cons/DatePickerTextField.dart';
 
@@ -180,7 +181,7 @@ class _AddExpenseState extends State<AddExpense> {
                                 padding: EdgeInsets.all(15),
                                 borderType: BorderType.RRect,
                                 radius: Radius.circular(10),
-                                dashPattern: [6],
+                                dashPattern: [8],
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
@@ -199,7 +200,11 @@ class _AddExpenseState extends State<AddExpense> {
                                   ],
                                 ),
                               ),
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => BillDetails(),
+                                ));
+                              },
                             ),
                           ],
                         ),

@@ -317,7 +317,7 @@ class _ConnectWalletState extends State<ConnectWallet> {
                                             child: Transform.scale(
                                               scale: 0.85,
                                               child: Icon(
-                                                Icons.account_balance,
+                                                Icons.currency_bitcoin,
                                                 size: 30,
                                                 color: Color(0xFF888888),
                                               ),
@@ -364,7 +364,7 @@ class _ConnectWalletState extends State<ConnectWallet> {
                                             child: Transform.scale(
                                               scale: 0.85,
                                               child: Icon(
-                                                Icons.account_balance,
+                                                Icons.paypal,
                                                 size: 30,
                                                 color: Color(0xFF888888),
                                               ),

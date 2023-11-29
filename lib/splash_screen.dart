@@ -30,7 +30,7 @@ class SplashScreen extends StatelessWidget {
   }
 
   Future callDelay(BuildContext context) async {
-    await Future.delayed(const Duration(milliseconds: 1000), () {});
+    await Future.delayed(const Duration(milliseconds: 500), () {});
     Navigator.pushNamed(context, "/onboard");
   }
 }

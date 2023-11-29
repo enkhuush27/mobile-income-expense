@@ -133,9 +133,8 @@ class LoginScreen extends StatelessWidget {
                     borderRadius: BorderRadius.all(Radius.circular(40)),
                   ),
                   child: Container(
-                    constraints: const BoxConstraints(
-                        minWidth: 120.0,
-                        minHeight: 70.0), // min sizes for Material buttons
+                    constraints:
+                        const BoxConstraints(minWidth: 120.0, minHeight: 70.0),
                     alignment: Alignment.center,
                     child: const Text(
                       "Нэвтрэх",

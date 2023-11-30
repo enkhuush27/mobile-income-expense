@@ -1,11 +1,8 @@
-// ignore_for_file: unused_import
-
 import 'package:flutter/material.dart';
 import 'package:income_expense/billPayment.dart';
 import 'package:income_expense/cons/body.dart';
 import 'package:income_expense/cons/bottomNav.dart';
 import 'package:income_expense/cons/header.dart';
-import 'package:income_expense/main.dart';
 
 class BillDetails extends StatefulWidget {
   const BillDetails({super.key});
@@ -20,7 +17,6 @@ class _BillDetailsState extends State<BillDetails> {
     return MaterialApp(
       home: Scaffold(
         backgroundColor: Colors.white,
-        extendBodyBehindAppBar: true,
         body: Stack(children: [
           BottomNav(),
           Header(),
@@ -104,7 +100,7 @@ class _BillDetailsState extends State<BillDetails> {
                         height: 20,
                       ),
                       Divider(
-                        color: Color(0xFFDDDDDD),
+                        color: Color(0xFF999999),
                       ),
                       SizedBox(
                         height: 20,
@@ -180,14 +176,14 @@ class _BillDetailsState extends State<BillDetails> {
                                   style: BorderStyle.solid),
                               borderRadius: BorderRadius.circular(10),
                             ),
-                            child: Transform.scale(
-                              scale: 0.5,
-                              child: Icon(
-                                Icons.circle_sharp,
-                                size: 30,
-                                color: Color(0xFF438883),
-                              ),
-                            ),
+                            // child: Transform.scale(
+                            //   scale: 0.5,
+                            //   child: Icon(
+                            //     Icons.circle_sharp,
+                            //     size: 30,
+                            //     color: Color(0xFF438883),
+                            //   ),
+                            // ),
                           ),
                         ),
                       ),
@@ -212,14 +208,14 @@ class _BillDetailsState extends State<BillDetails> {
                               scale: 0.6,
                               child: Image(
                                 image: AssetImage('assets/logo-2.png'),
-                                color: Color(0xFF438883),
+                                color: Color(0xFF888888),
                               ),
                             ),
                           ),
                           title: Text(
                             "Paypal",
                             style: TextStyle(
-                                color: Color(0xFF438883),
+                                color: Color(0xFF888888),
                                 fontWeight: FontWeight.w600),
                           ),
                           trailing: Container(
@@ -228,7 +224,7 @@ class _BillDetailsState extends State<BillDetails> {
                             decoration: BoxDecoration(
                               color: Colors.white,
                               border: Border.all(
-                                  color: Color(0xFF438883),
+                                  color: Color(0xFF888888),
                                   style: BorderStyle.solid),
                               borderRadius: BorderRadius.circular(10),
                             ),

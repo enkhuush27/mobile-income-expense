@@ -195,14 +195,7 @@ class _ConnectWalletState extends State<ConnectWallet> {
                                           height: 15,
                                         ),
                                         ElevatedButton(
-                                          onPressed: () {
-                                            Navigator.of(context).push(
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    HomeScreen(),
-                                              ),
-                                            );
-                                          },
+                                          onPressed: () {},
                                           style: ElevatedButton.styleFrom(
                                             shape: RoundedRectangleBorder(
                                               borderRadius:

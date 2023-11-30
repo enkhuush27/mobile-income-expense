@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "750947628974",
+    "project_id": "incomeandexpenseapp",
+    "storage_bucket": "incomeandexpenseapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:750947628974:android:ff915ed140e5c140d77a3f",
+        "android_client_info": {
+          "package_name": "com.example.income_expense"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBaeSh3f8aQAanNtPKIAoXHZ_fEDTVbDJQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

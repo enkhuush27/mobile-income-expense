@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:income_expense/home.dart';
-import 'package:income_expense/register.dart';
+import 'package:income_expense/screens/home.dart';
+import 'package:income_expense/screens/register.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});

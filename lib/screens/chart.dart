@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:income_expense/cons/header.dart';
-import 'package:income_expense/cons/bottomNav.dart';
+import 'package:income_expense/widgets/header.dart';
+import 'package:income_expense/widgets/bottomNav.dart';
 
 class ChartScreen extends StatefulWidget {
   const ChartScreen({super.key});

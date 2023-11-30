@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:income_expense/chart.dart';
-import 'package:income_expense/home.dart';
-import 'package:income_expense/wallet.dart';
+import 'package:income_expense/screens/chart.dart';
+import 'package:income_expense/screens/home.dart';
+import 'package:income_expense/screens/wallet.dart';
 
 class BottomNav extends StatefulWidget {
   const BottomNav({super.key});

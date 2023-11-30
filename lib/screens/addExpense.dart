@@ -1,8 +1,8 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
-import 'package:income_expense/billDetails.dart';
-import 'package:income_expense/cons/header.dart';
-import 'package:income_expense/cons/DatePickerTextField.dart';
+import 'package:income_expense/screens/billDetails.dart';
+import 'package:income_expense/widgets/header.dart';
+import 'package:income_expense/widgets/DatePickerTextField.dart';
 
 const List<String> list = ['Netflix', "Youtube", "Upwork"];
 

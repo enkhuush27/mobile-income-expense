@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:income_expense/cons/body.dart';
-import 'package:income_expense/cons/bottomNav.dart';
-import 'package:income_expense/cons/header.dart';
-import 'package:income_expense/cons/rowDefault.dart';
+import 'package:income_expense/widgets/body.dart';
+import 'package:income_expense/widgets/bottomNav.dart';
+import 'package:income_expense/widgets/header.dart';
+import 'package:income_expense/widgets/rowDefault.dart';
 
 class BillPaymentNext extends StatefulWidget {
   const BillPaymentNext({super.key});

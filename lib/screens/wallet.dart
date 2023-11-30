@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:income_expense/cons/bottomNav.dart';
-import 'package:income_expense/cons/header.dart';
-import 'package:income_expense/cons/listTileCons.dart';
-import 'package:income_expense/cons/waitingList.dart';
-import 'package:income_expense/home.dart';
+import 'package:income_expense/widgets/bottomNav.dart';
+import 'package:income_expense/widgets/header.dart';
+import 'package:income_expense/widgets/listTileCons.dart';
+import 'package:income_expense/widgets/waitingList.dart';
+import 'package:income_expense/screens/home.dart';
 
 class WalletScreen extends StatefulWidget {
   const WalletScreen({super.key});

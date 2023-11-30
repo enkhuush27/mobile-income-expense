@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:income_expense/chart.dart';
-import 'package:income_expense/cons/profile.dart';
-import 'package:income_expense/wallet.dart';
-import './cons/header.dart';
-import './cons/listTileCons.dart';
+import 'package:income_expense/screens/chart.dart';
+import 'package:income_expense/widgets/profile.dart';
+import 'package:income_expense/screens/wallet.dart';
+import 'package:income_expense/widgets/header.dart';
+import 'package:income_expense/widgets/listTileCons.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -166,6 +166,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   width: 120,
                                 ),
                                 Text(
+                                  textAlign: TextAlign.end,
                                   "\$ 284.00",
                                   style: TextStyle(
                                       color: Color(0xFFFFFFFFF),

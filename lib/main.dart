@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:income_expense/login.dart';
-import 'package:income_expense/register.dart';
-import 'onboarding.dart';
-import 'splash_screen.dart';
+import 'package:income_expense/screens/login.dart';
+import 'package:income_expense/screens/register.dart';
+import 'package:income_expense/screens/onboarding.dart';
+import 'package:income_expense/screens/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());

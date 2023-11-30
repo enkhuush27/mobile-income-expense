@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:income_expense/connectWallet.dart';
+import 'package:income_expense/screens/connectWallet.dart';
 
 class WaitList extends StatefulWidget {
   const WaitList({super.key});

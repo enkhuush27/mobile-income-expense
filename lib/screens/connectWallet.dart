@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:income_expense/addExpense.dart';
-import 'package:income_expense/cons/body.dart';
-import 'package:income_expense/cons/bottomNav.dart';
-import 'package:income_expense/cons/header.dart';
-import 'package:income_expense/cons/textForm.dart';
-import 'package:income_expense/home.dart';
+import 'package:income_expense/screens/addExpense.dart';
+import 'package:income_expense/widgets/body.dart';
+import 'package:income_expense/widgets/bottomNav.dart';
+import 'package:income_expense/widgets/header.dart';
+import 'package:income_expense/widgets/textForm.dart';
+import 'package:income_expense/screens/home.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
 
 class ConnectWallet extends StatefulWidget {

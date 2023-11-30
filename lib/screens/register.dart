@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import './login.dart';
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key});
@@ -181,9 +180,7 @@ class RegisterScreen extends StatelessWidget {
                 ),
                 TextButton(
                   onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => LoginScreen()),
-                    );
+                    Navigator.pushNamed(context, "/loginScreen");
                   },
                   child: Text(
                     "Нэвртэх",

@@ -41,10 +41,6 @@ dependencies:
   firebase_messaging: ^14.7.6
   firebase_core: ^2.24.0
   firebase: ^9.0.3
-<<<<<<< HEAD
-=======
-  # cloud_firestore: ^4.13.3
->>>>>>> e15936cb09115904bbc37e9b491d4dd983bfb15c
 
 dev_dependencies:
   flutter_test:

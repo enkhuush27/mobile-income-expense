@@ -74,8 +74,7 @@ class LoginScreen extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.only(right: 30, left: 30),
-              child: TextFormField(
-                textAlign: TextAlign.start,
+              child: TextField(
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(25),
@@ -94,8 +93,10 @@ class LoginScreen extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.only(right: 30, left: 30),
-              child: TextFormField(
-                textAlign: TextAlign.start,
+              child: TextField(
+                obscureText: true,
+                enableSuggestions: false,
+                autocorrect: false,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(25),

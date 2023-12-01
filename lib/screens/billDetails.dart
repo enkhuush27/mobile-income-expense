@@ -166,24 +166,9 @@ class _BillDetailsState extends State<BillDetails> {
                                 color: Color(0xFF438883),
                                 fontWeight: FontWeight.w600),
                           ),
-                          trailing: Container(
-                            width: 20,
-                            height: 20,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              border: Border.all(
-                                  color: Color(0xFF438883),
-                                  style: BorderStyle.solid),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            // child: Transform.scale(
-                            //   scale: 0.5,
-                            //   child: Icon(
-                            //     Icons.circle_sharp,
-                            //     size: 30,
-                            //     color: Color(0xFF438883),
-                            //   ),
-                            // ),
+                          trailing: Icon(
+                            Icons.radio_button_checked,
+                            color: Color(0xFF438883),
                           ),
                         ),
                       ),

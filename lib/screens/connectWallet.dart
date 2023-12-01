@@ -281,7 +281,7 @@ class _ConnectWalletState extends State<ConnectWallet> {
                                                 fontWeight: FontWeight.w500,
                                                 color: Color(0xFF438883)),
                                           ),
-                                          trailing: Icon(Icons.check,
+                                          trailing: Icon(Icons.check_circle,
                                               color: Color(0xFF438883)),
                                         ),
                                       ),

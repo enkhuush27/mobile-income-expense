@@ -15,6 +15,13 @@ class AddExpense extends StatefulWidget {
 
 class _AddExpenseState extends State<AddExpense> {
   String dropdownValue = list.first;
+
+  Map<String, String> iconMapping = {
+    'Netflix': 'assets/netflix.png',
+    'Youtube': 'assets/youtube.png',
+    'Upwork': 'assets/upwork.png',
+  };
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -61,34 +68,39 @@ class _AddExpenseState extends State<AddExpense> {
                             ),
                             DropdownButtonFormField(
                               value: dropdownValue,
-                              icon: const Icon(Icons.arrow_drop_down),
+                              icon: Icon(Icons.arrow_drop_down),
                               elevation: 16,
                               decoration: InputDecoration(
-                                  prefixIcon: Padding(
-                                    padding: EdgeInsets.all(10),
-                                    child: Image.asset(
-                                      'assets/netflix.png',
-                                      width: 50,
-                                      height: 50,
-                                    ),
+                                prefixIcon: Padding(
+                                  padding: EdgeInsets.all(10),
+                                  child: Image.asset(
+                                    iconMapping[dropdownValue] ??
+                                        'assets/default.png',
+                                    width: 50,
+                                    height: 50,
                                   ),
-                                  border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10))),
-                              style: const TextStyle(
-                                  color: Color(0xFF666666),
-                                  fontWeight: FontWeight.w500),
+                                ),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                              ),
+                              style: TextStyle(
+                                color: Color(0xFF666666),
+                                fontWeight: FontWeight.w500,
+                              ),
                               onChanged: (String? value) {
                                 setState(() {
                                   dropdownValue = value!;
                                 });
                               },
                               items: list.map<DropdownMenuItem<String>>(
-                                  (String value) {
-                                return DropdownMenuItem<String>(
-                                  value: value,
-                                  child: Text(value),
-                                );
-                              }).toList(),
+                                (String value) {
+                                  return DropdownMenuItem<String>(
+                                    value: value,
+                                    child: Text(value),
+                                  );
+                                },
+                              ).toList(),
                             ),
                             SizedBox(
                               height: 20,
@@ -139,29 +151,6 @@ class _AddExpenseState extends State<AddExpense> {
                               height: 10,
                             ),
                             DatePickerTextField(),
-                            // TextFormField(
-                            //   decoration: InputDecoration(
-                            //     border: OutlineInputBorder(
-                            //       borderRadius:
-                            //           BorderRadius.all(Radius.circular(10)),
-                            //       borderSide: BorderSide(
-                            //         color: Color(0xFFDDDDDD),
-                            //       ),
-                            //     ),
-                            //     labelStyle: TextStyle(color: Color(0xFFDDDDDD)),
-                            //     fillColor: Color(0xFFFFFFFF),
-                            //     hintText: "Tue, 22 Feb 2022",
-                            //     suffixIcon: Icon(Icons.calendar_today),
-                            //     focusedBorder: OutlineInputBorder(
-                            //       borderRadius:
-                            //           BorderRadius.all(Radius.circular(10)),
-                            //       borderSide: BorderSide(
-                            //         color: Color(0xFF438883),
-                            //       ),
-                            //     ),
-                            //   ),
-                            //   style: TextStyle(color: Color(0xFF438883)),
-                            // ),
                             SizedBox(
                               height: 20,
                             ),

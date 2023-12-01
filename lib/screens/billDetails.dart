@@ -12,6 +12,7 @@ class BillDetails extends StatefulWidget {
 }
 
 class _BillDetailsState extends State<BillDetails> {
+  int selectedTileIndex = -1;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -166,10 +167,8 @@ class _BillDetailsState extends State<BillDetails> {
                                 color: Color(0xFF438883),
                                 fontWeight: FontWeight.w600),
                           ),
-                          trailing: Icon(
-                            Icons.radio_button_checked,
-                            color: Color(0xFF438883),
-                          ),
+                          trailing: Icon(Icons.radio_button_checked,
+                              color: Color(0xFF438883)),
                         ),
                       ),
                       SizedBox(

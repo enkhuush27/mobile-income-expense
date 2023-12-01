@@ -38,6 +38,7 @@ class _dListTileState extends State<dListTile> {
           ),
           trailing: Text(
             "+ \$ 850.00",
+            textAlign: TextAlign.end,
             style: TextStyle(
               color: Color(0xFF25A969),
               fontSize: 18,

@@ -111,6 +111,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               children: [
                                 Text(
                                   "\$ 5,232.00",
+                                  textAlign: TextAlign.start,
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 28,

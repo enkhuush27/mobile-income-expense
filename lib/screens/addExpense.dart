@@ -115,7 +115,7 @@ class _AddExpenseState extends State<AddExpense> {
                             SizedBox(
                               height: 10,
                             ),
-                            TextFormField(
+                            TextField(
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(
                                   borderRadius:
@@ -190,9 +190,11 @@ class _AddExpenseState extends State<AddExpense> {
                                 ),
                               ),
                               onTap: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => BillDetails(),
-                                ));
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) => BillDetails(),
+                                  ),
+                                );
                               },
                             ),
                           ],

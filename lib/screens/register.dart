@@ -69,7 +69,7 @@ class RegisterScreen extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.only(right: 30, left: 30),
-              child: TextFormField(
+              child: TextField(
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
@@ -87,7 +87,7 @@ class RegisterScreen extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.only(right: 30, left: 30),
-              child: TextFormField(
+              child: TextField(
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
@@ -105,7 +105,7 @@ class RegisterScreen extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.only(right: 30, left: 30),
-              child: TextFormField(
+              child: TextField(
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
@@ -123,7 +123,7 @@ class RegisterScreen extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.only(right: 30, left: 30),
-              child: TextFormField(
+              child: TextField(
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:income_expense/screens/addExpense.dart';
 import 'package:income_expense/widgets/body.dart';
@@ -8,20 +9,49 @@ import 'package:income_expense/screens/home.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
 
 class ConnectWallet extends StatefulWidget {
-  const ConnectWallet({super.key});
+  ConnectWallet({
+    super.key,
+  });
 
   @override
   State<ConnectWallet> createState() => _ConnectWalletState();
 }
 
 class _ConnectWalletState extends State<ConnectWallet> {
-  String cardNumber = '1234 5678 9012 3456';
-  String expiryDate = '12/23';
-  String cardHolderName = 'Enkhuush';
-  String cvvCode = '123';
   bool isCvvFocused = false;
+
   @override
   Widget build(BuildContext context) {
+    final TextEditingController _cardNumber = TextEditingController();
+    final TextEditingController _expiryDate = TextEditingController();
+    final TextEditingController _cardHolderName = TextEditingController();
+    final TextEditingController _cvvCode = TextEditingController();
+    final TextEditingController _zipCode = TextEditingController();
+    CollectionReference cards =
+        FirebaseFirestore.instance.collection('credit_cards');
+
+    Future<void> addCards() async {
+      try {
+        await cards.add({
+          'cardNumber': _cardNumber.text,
+          'expiryDate': _expiryDate.text,
+          'cardHolderName': _cardHolderName.text,
+          'cvvCode': _cvvCode.text,
+        });
+
+        setState(() {
+          _cardNumber.clear();
+          _expiryDate.clear();
+          _cardHolderName.clear();
+          _cvvCode.clear();
+        });
+
+        print("Card added successfully");
+      } catch (error) {
+        print("Failed to add card: $error");
+      }
+    }
+
     return MaterialApp(
       home: Scaffold(
         resizeToAvoidBottomInset: false,
@@ -123,14 +153,15 @@ class _ConnectWalletState extends State<ConnectWallet> {
                               Column(
                                 children: [
                                   CreditCardWidget(
-                                    cardNumber: cardNumber,
-                                    expiryDate: expiryDate,
-                                    cardHolderName: cardHolderName,
-                                    cvvCode: cvvCode,
+                                    cardNumber: "xxxx xxxx xxxx xxxx",
+                                    expiryDate: "05/24",
+                                    cardHolderName: "Enkhuush",
+                                    cvvCode: "723",
                                     showBackView: isCvvFocused,
                                     onCreditCardWidgetChange:
                                         (CreditCardBrand) {},
-                                    cardBgColor: Color(0xFF2A7C76),
+                                    cardBgColor:
+                                        Color.fromRGBO(42, 124, 118, 1),
                                     cardType: CardType.visa,
                                     isSwipeGestureEnabled: true,
                                     bankName: "Wells Fargo",
@@ -156,7 +187,10 @@ class _ConnectWalletState extends State<ConnectWallet> {
                                     height: 230,
                                     child: SingleChildScrollView(
                                       child: Column(children: [
-                                        TextForm("Карт дээрх нэр"),
+                                        TextForm(
+                                          "Карт дээрх нэр",
+                                          controller: _cardHolderName,
+                                        ),
                                         SizedBox(
                                           height: 15,
                                         ),
@@ -166,11 +200,17 @@ class _ConnectWalletState extends State<ConnectWallet> {
                                           children: [
                                             Container(
                                               width: 200,
-                                              child: TextForm("Картын дугаар"),
+                                              child: TextForm(
+                                                "Картын дугаар",
+                                                controller: _cardNumber,
+                                              ),
                                             ),
                                             Container(
                                               width: 125,
-                                              child: TextForm("CVC"),
+                                              child: TextForm(
+                                                "CVC",
+                                                controller: _cvvCode,
+                                              ),
                                             ),
                                           ],
                                         ),
@@ -183,11 +223,15 @@ class _ConnectWalletState extends State<ConnectWallet> {
                                           children: [
                                             Container(
                                               width: 200,
-                                              child: TextForm("Дуусах хугацаа"),
+                                              child: TextForm("Дуусах хугацаа",
+                                                  controller: _expiryDate),
                                             ),
                                             Container(
                                               width: 125,
-                                              child: TextForm("ZIP"),
+                                              child: TextForm(
+                                                "ZIP",
+                                                controller: _zipCode,
+                                              ),
                                             ),
                                           ],
                                         ),
@@ -195,7 +239,9 @@ class _ConnectWalletState extends State<ConnectWallet> {
                                           height: 15,
                                         ),
                                         ElevatedButton(
-                                          onPressed: () {},
+                                          onPressed: () {
+                                            addCards;
+                                          },
                                           style: ElevatedButton.styleFrom(
                                             shape: RoundedRectangleBorder(
                                               borderRadius:

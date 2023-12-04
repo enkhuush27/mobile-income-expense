@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:income_expense/screens/connectWallet.dart';
 import 'package:income_expense/widgets/bottomNav.dart';
 import 'package:income_expense/widgets/header.dart';
 import 'package:income_expense/widgets/listTileCons.dart';
@@ -108,8 +109,11 @@ class _WalletScreenState extends State<WalletScreen> {
                                   borderRadius: BorderRadius.circular(25)),
                               child: IconButton(
                                 onPressed: () {
-                                  Navigator.pushNamed(
-                                      context, '/connectWallet');
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) => ConnectWallet(),
+                                    ),
+                                  );
                                 },
                                 icon: Icon(Icons.add, size: 30),
                                 color: Color(0xFF549994),

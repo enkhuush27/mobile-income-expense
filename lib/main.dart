@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
         '/homeScreen': (context) => HomeScreen(),
         '/walletScreen': (context) => WalletScreen(),
         '/addScreen': (context) => AddExpense(),
-        '/connectWallet': (context) => ConnectWallet(),
+        //'/connectWallet': (context) => ConnectWallet(),
       },
       theme: ThemeData(
         primarySwatch: Colors.blue,

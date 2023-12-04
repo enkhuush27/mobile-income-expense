@@ -46,9 +46,11 @@ class _WaitListState extends State<WaitList> {
             ),
             alignment: Alignment.center,
             child: TextButton(
-              onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => ConnectWallet(),
-              )),
+              onPressed: () {
+                // Navigator.of(context).push(MaterialPageRoute(
+                //   builder: (context) => ConnectWallet(),
+                // ));
+              },
               child: Text(
                 "Төлөх",
                 style: TextStyle(color: Color(0xFF438883), fontSize: 16),

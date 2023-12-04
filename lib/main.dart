@@ -3,6 +3,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:income_expense/screens/addExpense.dart';
+import 'package:income_expense/screens/connectWallet.dart';
 import 'package:income_expense/screens/home.dart';
 import 'package:income_expense/screens/login.dart';
 import 'package:income_expense/screens/register.dart';
@@ -40,6 +41,7 @@ class MyApp extends StatelessWidget {
         '/homeScreen': (context) => HomeScreen(),
         '/walletScreen': (context) => WalletScreen(),
         '/addScreen': (context) => AddExpense(),
+        '/connectWallet': (context) => ConnectWallet(),
       },
       theme: ThemeData(
         primarySwatch: Colors.blue,

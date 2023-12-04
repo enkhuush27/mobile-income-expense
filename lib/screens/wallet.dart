@@ -107,7 +107,10 @@ class _WalletScreenState extends State<WalletScreen> {
                                   border: Border.all(color: Color(0xFF549994)),
                                   borderRadius: BorderRadius.circular(25)),
                               child: IconButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.pushNamed(
+                                      context, '/connectWallet');
+                                },
                                 icon: Icon(Icons.add, size: 30),
                                 color: Color(0xFF549994),
                               ),

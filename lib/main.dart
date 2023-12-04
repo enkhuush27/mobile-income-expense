@@ -15,7 +15,6 @@ void main() async {
   await Firebase.initializeApp();
 
   final messaging = FirebaseMessaging.instance;
-
   String? token = await messaging.getToken();
 
   if (kDebugMode) {

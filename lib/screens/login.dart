@@ -1,12 +1,20 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:income_expense/screens/home.dart';
 import 'package:income_expense/screens/register.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
   @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  @override
   Widget build(BuildContext context) {
+    final TextEditingController _emailController = TextEditingController();
+    final TextEditingController _passwordController = TextEditingController();
     return MaterialApp(
       home: Scaffold(
         backgroundColor: Color(0xFFF0F0F0),
@@ -75,6 +83,7 @@ class LoginScreen extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(right: 30, left: 30),
               child: TextField(
+                controller: _emailController,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(25),
@@ -94,6 +103,7 @@ class LoginScreen extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(right: 30, left: 30),
               child: TextField(
+                controller: _passwordController,
                 obscureText: true,
                 enableSuggestions: false,
                 autocorrect: false,
@@ -116,12 +126,60 @@ class LoginScreen extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(right: 30, left: 30),
               child: ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => HomeScreen(),
-                    ),
-                  );
+                onPressed: () async {
+                  try {
+                    if (_emailController.text.isEmpty ||
+                        _passwordController.text.isEmpty) {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: Text('Амжилтгүй боллоо'),
+                            content: Text('Майл болон нууц үгээ оруул.'),
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: Text('OK'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                      return;
+                    }
+
+                    await FirebaseAuth.instance.signInWithEmailAndPassword(
+                      email: _emailController.text,
+                      password: _passwordController.text,
+                    );
+
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (context) => HomeScreen(),
+                      ),
+                    );
+                  } catch (e) {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: Text('Sign-in Failed'),
+                          content: Text('Error: $e'),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: Text('OK'),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                    print('Error: $e');
+                  }
                 },
                 style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(

@@ -1,10 +1,22 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class RegisterScreen extends StatelessWidget {
+class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
 
   @override
+  State<RegisterScreen> createState() => _RegisterScreenState();
+}
+
+class _RegisterScreenState extends State<RegisterScreen> {
+  @override
   Widget build(BuildContext context) {
+    final TextEditingController _nameController = TextEditingController();
+    final TextEditingController _emailController = TextEditingController();
+    final TextEditingController _passwordController = TextEditingController();
+    final TextEditingController _confirmPasswordController =
+        TextEditingController();
+
     return MaterialApp(
       home: Scaffold(
         backgroundColor: Color(0xFFF0F0F0),
@@ -70,6 +82,7 @@ class RegisterScreen extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(right: 30, left: 30),
               child: TextField(
+                controller: _nameController,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
@@ -88,6 +101,7 @@ class RegisterScreen extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(right: 30, left: 30),
               child: TextField(
+                controller: _emailController,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
@@ -106,6 +120,10 @@ class RegisterScreen extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(right: 30, left: 30),
               child: TextField(
+                controller: _passwordController,
+                obscureText: true,
+                enableSuggestions: false,
+                autocorrect: false,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
@@ -124,6 +142,10 @@ class RegisterScreen extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(right: 30, left: 30),
               child: TextField(
+                obscureText: true,
+                enableSuggestions: false,
+                autocorrect: false,
+                controller: _confirmPasswordController,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
@@ -142,7 +164,56 @@ class RegisterScreen extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(right: 30, left: 30),
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () async {
+                  try {
+                    if (_passwordController.text !=
+                        _confirmPasswordController.text) {
+                      print('Passwords do not match');
+                      return;
+                    }
+
+                    await FirebaseAuth.instance.createUserWithEmailAndPassword(
+                      email: _emailController.text,
+                      password: _passwordController.text,
+                    );
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: Text('Амжилттай бүртгүүллээ'),
+                          content: Text('You have successfully signed up.'),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: Text('OK'),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  } catch (e) {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: Text('Дахиад оролдоно уу'),
+                          content: Text('Error: $e'),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: Text('OK'),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                    print('Error: $e');
+                  }
+                },
                 style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(40)),

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:income_expense/screens/chart.dart';
 import 'package:income_expense/widgets/profile.dart';
@@ -15,6 +16,32 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+    // CollectionReference account =
+    //     FirebaseFirestore.instance.collection('account');
+
+    // FutureBuilder<DocumentSnapshot>(
+    //   future: account.doc().get(),
+    //   builder:
+    //       (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+    //     if (snapshot.hasError) {
+    //       return Text("Something went wrong");
+    //     }
+
+    //     if (snapshot.hasData && !snapshot.data!.exists) {
+    //       return Text("Document does not exist");
+    //     }
+
+    //     if (snapshot.connectionState == ConnectionState.done) {
+    //       Map<String, dynamic> data =
+    //           snapshot.data!.data() as Map<String, dynamic>;
+    //       return Text("Total: ${data['total']}"
+    //           "Income: ${data['income']}"
+    //           "Expense: ${data['expense']}");
+    //     }
+
+    //     return Text("loading");
+    //   },
+    // );
     return MaterialApp(
       home: Scaffold(
         backgroundColor: Color(0xFFFFFFFF),

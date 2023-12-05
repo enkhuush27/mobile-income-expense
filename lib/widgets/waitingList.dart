@@ -47,9 +47,9 @@ class _WaitListState extends State<WaitList> {
             alignment: Alignment.center,
             child: TextButton(
               onPressed: () {
-                // Navigator.of(context).push(MaterialPageRoute(
-                //   builder: (context) => ConnectWallet(),
-                // ));
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => ConnectWallet(),
+                ));
               },
               child: Text(
                 "Төлөх",

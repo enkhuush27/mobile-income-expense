@@ -3,7 +3,6 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:income_expense/screens/addExpense.dart';
-import 'package:income_expense/screens/connectWallet.dart';
 import 'package:income_expense/screens/home.dart';
 import 'package:income_expense/screens/login.dart';
 import 'package:income_expense/screens/register.dart';

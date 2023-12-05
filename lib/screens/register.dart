@@ -185,6 +185,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           actions: [
                             TextButton(
                               onPressed: () {
+                                setState(() {
+                                  _nameController.clear();
+                                  _emailController.clear();
+                                  _passwordController.clear();
+                                  _confirmPasswordController.clear();
+                                });
                                 Navigator.of(context).pop();
                               },
                               child: Text('OK'),

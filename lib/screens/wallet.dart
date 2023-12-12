@@ -84,7 +84,7 @@ class _WalletScreenState extends State<WalletScreen> {
                     height: 10,
                   ),
                   Text(
-                    "\$ 2,548.00",
+                    "\$ ",
                     style: TextStyle(
                         color: Color(0xFF222222),
                         fontWeight: FontWeight.w700,

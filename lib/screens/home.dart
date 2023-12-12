@@ -14,34 +14,38 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  late int balance = 0;
+  late int income = 0;
+  late int expense = 0;
+
   @override
+  void initState() {
+    super.initState();
+    fetchBalanceFromFirestore();
+  }
+
+  Future<void> fetchBalanceFromFirestore() async {
+    try {
+      DocumentSnapshot snapshot = await FirebaseFirestore.instance
+          .collection('account')
+          .doc('accounts')
+          .get();
+
+      if (snapshot.exists) {
+        setState(() {
+          balance = snapshot['total'] ?? 0;
+          income = snapshot['income'] ?? 0;
+          expense = snapshot['expense'] ?? 0;
+        });
+      } else {
+        print('Document does not exist');
+      }
+    } catch (e) {
+      print('Error: $e');
+    }
+  }
+
   Widget build(BuildContext context) {
-    // CollectionReference account =
-    //     FirebaseFirestore.instance.collection('account');
-
-    // FutureBuilder<DocumentSnapshot>(
-    //   future: account.doc().get(),
-    //   builder:
-    //       (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
-    //     if (snapshot.hasError) {
-    //       return Text("Something went wrong");
-    //     }
-
-    //     if (snapshot.hasData && !snapshot.data!.exists) {
-    //       return Text("Document does not exist");
-    //     }
-
-    //     if (snapshot.connectionState == ConnectionState.done) {
-    //       Map<String, dynamic> data =
-    //           snapshot.data!.data() as Map<String, dynamic>;
-    //       return Text("Total: ${data['total']}"
-    //           "Income: ${data['income']}"
-    //           "Expense: ${data['expense']}");
-    //     }
-
-    //     return Text("loading");
-    //   },
-    // );
     return MaterialApp(
       home: Scaffold(
         backgroundColor: Color(0xFFFFFFFF),
@@ -106,11 +110,11 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(top: 140, left: 20),
+                        padding: EdgeInsets.only(top: 140, left: 20, right: 20),
                         child: Column(
                           children: <Widget>[
                             Row(
-                              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
                                   "Нийт үлдэгдэл",
@@ -134,10 +138,10 @@ class _HomeScreenState extends State<HomeScreen> {
                               ],
                             ),
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  "\$ 5,232.00",
+                                  "\$ $balance",
                                   textAlign: TextAlign.start,
                                   style: TextStyle(
                                     color: Colors.white,
@@ -151,6 +155,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               height: 25,
                             ),
                             Row(
+                              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
                                 Icon(
                                   Icons.arrow_downward_rounded,
@@ -182,21 +187,19 @@ class _HomeScreenState extends State<HomeScreen> {
                               ],
                             ),
                             Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  "\$ 1,840.00",
+                                  "\$ $income",
                                   textAlign: TextAlign.start,
                                   style: TextStyle(
                                       color: Color(0xFFFFFFFFF),
                                       fontSize: 22,
                                       fontWeight: FontWeight.w600),
                                 ),
-                                SizedBox(
-                                  width: 120,
-                                ),
                                 Text(
                                   textAlign: TextAlign.end,
-                                  "\$ 284.00",
+                                  "\$ $expense",
                                   style: TextStyle(
                                       color: Color(0xFFFFFFFFF),
                                       fontSize: 22,

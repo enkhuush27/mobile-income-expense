@@ -127,59 +127,62 @@ class _LoginScreenState extends State<LoginScreen> {
               padding: EdgeInsets.only(right: 30, left: 30),
               child: ElevatedButton(
                 onPressed: () async {
-                  try {
-                    if (_emailController.text.isEmpty ||
-                        _passwordController.text.isEmpty) {
-                      showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return AlertDialog(
-                            title: Text('Амжилтгүй боллоо'),
-                            content: Text('Майл болон нууц үгээ оруул.'),
-                            actions: [
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                                child: Text('OK'),
-                              ),
-                            ],
-                          );
-                        },
-                      );
-                      return;
-                    }
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => HomeScreen(),
+                  ));
+                  // try {
+                  //   if (_emailController.text.isEmpty ||
+                  //       _passwordController.text.isEmpty) {
+                  //     showDialog(
+                  //       context: context,
+                  //       builder: (BuildContext context) {
+                  //         return AlertDialog(
+                  //           title: Text('Амжилтгүй боллоо'),
+                  //           content: Text('Майл болон нууц үгээ оруул.'),
+                  //           actions: [
+                  //             TextButton(
+                  //               onPressed: () {
+                  //                 Navigator.of(context).pop();
+                  //               },
+                  //               child: Text('OK'),
+                  //             ),
+                  //           ],
+                  //         );
+                  //       },
+                  //     );
+                  //     return;
+                  //   }
 
-                    await FirebaseAuth.instance.signInWithEmailAndPassword(
-                      email: _emailController.text,
-                      password: _passwordController.text,
-                    );
+                  //   await FirebaseAuth.instance.signInWithEmailAndPassword(
+                  //     email: _emailController.text,
+                  //     password: _passwordController.text,
+                  //   );
 
-                    Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(
-                        builder: (context) => HomeScreen(),
-                      ),
-                    );
-                  } catch (e) {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          title: Text('Sign-in Failed'),
-                          content: Text('Error: $e'),
-                          actions: [
-                            TextButton(
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                              child: Text('OK'),
-                            ),
-                          ],
-                        );
-                      },
-                    );
-                    print('Error: $e');
-                  }
+                  //   Navigator.of(context).pushReplacement(
+                  //     MaterialPageRoute(
+                  //       builder: (context) => HomeScreen(),
+                  //     ),
+                  //   );
+                  // } catch (e) {
+                  //   showDialog(
+                  //     context: context,
+                  //     builder: (BuildContext context) {
+                  //       return AlertDialog(
+                  //         title: Text('Sign-in Failed'),
+                  //         content: Text('Error: $e'),
+                  //         actions: [
+                  //           TextButton(
+                  //             onPressed: () {
+                  //               Navigator.of(context).pop();
+                  //             },
+                  //             child: Text('OK'),
+                  //           ),
+                  //         ],
+                  //       );
+                  //     },
+                  //   );
+                  //   print('Error: $e');
+                  // }
                 },
                 style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(

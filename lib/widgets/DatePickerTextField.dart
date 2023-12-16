@@ -28,10 +28,9 @@ class _DatePickerTextFieldState extends State<DatePickerTextField> {
     );
 
     if (picked != null) {
-      String formattedDate = DateFormat("E, d MMM yyyy").format(picked);
+      String formattedDate = DateFormat("d MMM yyyy").format(picked);
       _dateController.text = formattedDate;
-      widget
-          .onDateSelected(picked); // Callback to parent widget with date value
+      widget.onDateSelected(picked);
     }
   }
 

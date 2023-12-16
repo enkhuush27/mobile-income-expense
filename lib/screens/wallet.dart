@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:income_expense/model/ExpenseDetails.dart';
 import 'package:income_expense/screens/connectWallet.dart';
 import 'package:income_expense/widgets/bottomNav.dart';
 import 'package:income_expense/widgets/header.dart';
@@ -7,8 +8,15 @@ import 'package:income_expense/widgets/waitingList.dart';
 import 'package:income_expense/screens/home.dart';
 
 class WalletScreen extends StatefulWidget {
+  final ExpenseDetails? expenseDetails;
+  final String? iconPath;
   final int? balance;
-  const WalletScreen({this.balance, Key? key}) : super(key: key);
+  const WalletScreen({
+    Key? key,
+    this.expenseDetails,
+    this.iconPath,
+    this.balance,
+  }) : super(key: key);
 
   @override
   State<WalletScreen> createState() => _WalletScreenState();
@@ -226,7 +234,13 @@ class _WalletScreenState extends State<WalletScreen> {
                           child: TabBarView(
                             children: [
                               Container(child: dListTile()),
-                              Container(child: WaitList()),
+                              Container(
+                                  child: WaitList(
+                                expenseDetails: widget
+                                    .expenseDetails, // Pass received expenseDetails
+                                iconPath:
+                                    widget.iconPath ?? 'assets/default.png',
+                              )),
                             ],
                           ),
                         ),

@@ -204,9 +204,14 @@ class _AddExpenseState extends State<AddExpense> {
                                   expenseAmount: 0.0,
                                   date: selectedDate,
                                 );
+
+                                String iconPath = iconMapping[dropdownValue] ??
+                                    'assets/default.png';
                                 Navigator.of(context).push(
                                   MaterialPageRoute(
-                                    builder: (context) => WalletScreen(),
+                                    builder: (context) => WalletScreen(
+                                        expenseDetails: expenseDetails,
+                                        iconPath: iconPath),
                                   ),
                                 );
                               },

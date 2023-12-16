@@ -7,7 +7,8 @@ import 'package:income_expense/widgets/waitingList.dart';
 import 'package:income_expense/screens/home.dart';
 
 class WalletScreen extends StatefulWidget {
-  const WalletScreen({super.key});
+  final int? balance;
+  const WalletScreen({this.balance, Key? key}) : super(key: key);
 
   @override
   State<WalletScreen> createState() => _WalletScreenState();
@@ -84,7 +85,7 @@ class _WalletScreenState extends State<WalletScreen> {
                     height: 10,
                   ),
                   Text(
-                    "\$ ",
+                    "\$ ${widget.balance}",
                     style: TextStyle(
                         color: Color(0xFF222222),
                         fontWeight: FontWeight.w700,

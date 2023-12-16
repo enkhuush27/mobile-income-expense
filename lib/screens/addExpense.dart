@@ -1,13 +1,14 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
-import 'package:income_expense/screens/billDetails.dart';
+import 'package:income_expense/model/ExpenseDetails.dart';
+import 'package:income_expense/screens/wallet.dart';
 import 'package:income_expense/widgets/header.dart';
 import 'package:income_expense/widgets/DatePickerTextField.dart';
 
 const List<String> list = ['Netflix', "Youtube", "Upwork"];
 
 class AddExpense extends StatefulWidget {
-  const AddExpense({super.key});
+  const AddExpense({Key? key}) : super(key: key);
 
   @override
   State<AddExpense> createState() => _AddExpenseState();
@@ -15,6 +16,8 @@ class AddExpense extends StatefulWidget {
 
 class _AddExpenseState extends State<AddExpense> {
   String dropdownValue = list.first;
+  late DateTime selectedDate;
+  late ExpenseDetails expenseDetails;
 
   Map<String, String> iconMapping = {
     'Netflix': 'assets/netflix.png',
@@ -150,7 +153,13 @@ class _AddExpenseState extends State<AddExpense> {
                             SizedBox(
                               height: 10,
                             ),
-                            DatePickerTextField(),
+                            DatePickerTextField(
+                              onDateSelected: (DateTime date) {
+                                setState(() {
+                                  selectedDate = date;
+                                });
+                              },
+                            ),
                             SizedBox(
                               height: 20,
                             ),
@@ -190,9 +199,14 @@ class _AddExpenseState extends State<AddExpense> {
                                 ),
                               ),
                               onTap: () {
+                                expenseDetails = ExpenseDetails(
+                                  platform: dropdownValue,
+                                  expenseAmount: 0.0,
+                                  date: selectedDate,
+                                );
                                 Navigator.of(context).push(
                                   MaterialPageRoute(
-                                    builder: (context) => BillDetails(),
+                                    builder: (context) => WalletScreen(),
                                   ),
                                 );
                               },

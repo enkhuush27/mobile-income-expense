@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:income_expense/screens/addExpense.dart';
 import 'package:income_expense/screens/chart.dart';
 import 'package:income_expense/widgets/profile.dart';
 import 'package:income_expense/screens/wallet.dart';
@@ -14,9 +15,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  late int balance = 0;
-  late int income = 0;
-  late int expense = 0;
+  int? balance = 0;
+  int? income = 0;
+  int? expense = 0;
 
   @override
   void initState() {
@@ -240,7 +241,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Expanded(
               child: Column(
                 children: [
-                  Container(height: 230, child: dListTile()),
+                  Container(height: 230),
                 ],
               ),
             ),
@@ -277,7 +278,6 @@ class _HomeScreenState extends State<HomeScreen> {
             SizedBox(
               height: 10,
             ),
-            // BottomNav(),
           ],
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -286,14 +286,19 @@ class _HomeScreenState extends State<HomeScreen> {
           height: 65,
           child: FloatingActionButton(
             backgroundColor: Color(0xFF438883),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => AddExpense(),
+                ),
+              );
+            },
             child: const Icon(Icons.add, size: 28),
           ),
         ),
         bottomNavigationBar: BottomAppBar(
           color: Color(0xFFFFFFFFF),
           shape: CircularNotchedRectangle(),
-          //padding: EdgeInsets.only(top: 10, left: 20, right: 20, bottom: 5),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -319,7 +324,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 onPressed: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => WalletScreen(),
+                      builder: (context) => WalletScreen(
+                        balance: balance,
+                      ),
                     ),
                   );
                 },
@@ -331,7 +338,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   onPressed: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => WalletScreen(),
+                        builder: (context) => WalletScreen(
+                          balance: balance,
+                        ),
                       ),
                     );
                   },

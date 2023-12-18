@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:income_expense/model/ExpenseDetails.dart';
 import 'package:income_expense/screens/connectWallet.dart';
 
 class WaitList extends StatelessWidget {
-  final ExpenseDetails? expenseDetails;
-
-  const WaitList({Key? key, this.expenseDetails}) : super(key: key);
+  const WaitList({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:income_expense/model/ExpenseDetails.dart';
 import 'package:income_expense/screens/connectWallet.dart';
@@ -8,21 +9,44 @@ import 'package:income_expense/widgets/waitingList.dart';
 import 'package:income_expense/screens/home.dart';
 
 class WalletScreen extends StatefulWidget {
-  final ExpenseDetails? expenseDetails;
-  final String? iconPath;
-  final int? balance;
-  const WalletScreen({
-    Key? key,
-    this.expenseDetails,
-    this.iconPath,
-    this.balance,
-  }) : super(key: key);
+  const WalletScreen({super.key});
 
   @override
   State<WalletScreen> createState() => _WalletScreenState();
 }
 
 class _WalletScreenState extends State<WalletScreen> {
+  int? balance = 0;
+  int? income = 0;
+  int? expense = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchBalanceFromFirestore();
+  }
+
+  Future<void> fetchBalanceFromFirestore() async {
+    try {
+      DocumentSnapshot snapshot = await FirebaseFirestore.instance
+          .collection('account')
+          .doc('accounts')
+          .get();
+
+      if (snapshot.exists) {
+        setState(() {
+          balance = snapshot['total'] ?? 0;
+          income = snapshot['income'] ?? 0;
+          expense = snapshot['expense'] ?? 0;
+        });
+      } else {
+        print('Document does not exist');
+      }
+    } catch (e) {
+      print('Error: $e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -93,7 +117,7 @@ class _WalletScreenState extends State<WalletScreen> {
                     height: 10,
                   ),
                   Text(
-                    "\$ ${widget.balance}",
+                    "\$ ${balance}",
                     style: TextStyle(
                         color: Color(0xFF222222),
                         fontWeight: FontWeight.w700,
@@ -233,8 +257,8 @@ class _WalletScreenState extends State<WalletScreen> {
                           height: 300,
                           child: TabBarView(
                             children: [
-                              Container(child: dListTile()),
-                              Container(child: WaitList()),
+                              //Container(child: dListTile()),
+                              //Container(child: WaitList()),
                             ],
                           ),
                         ),

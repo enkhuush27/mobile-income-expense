@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:income_expense/model/ExpenseDetails.dart';
@@ -25,6 +26,21 @@ class _AddExpenseState extends State<AddExpense> {
 
   @override
   Widget build(BuildContext context) {
+    final TextEditingController _amountController = TextEditingController();
+    CollectionReference bills = FirebaseFirestore.instance.collection('bill');
+
+    Future<void> addBill() async {
+      try {
+        await bills.add({});
+
+        setState(() {});
+
+        print("Bill added successfully");
+      } catch (error) {
+        print("Failed to add card: $error");
+      }
+    }
+
     return MaterialApp(
       home: Scaffold(
         extendBodyBehindAppBar: true,
@@ -117,6 +133,7 @@ class _AddExpenseState extends State<AddExpense> {
                               height: 10,
                             ),
                             TextField(
+                              controller: _amountController,
                               decoration: InputDecoration(
                                 border: OutlineInputBorder(
                                   borderRadius:

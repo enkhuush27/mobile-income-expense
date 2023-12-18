@@ -9,9 +9,7 @@ import 'package:income_expense/screens/home.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
 
 class ConnectWallet extends StatefulWidget {
-  ConnectWallet({
-    super.key,
-  });
+  ConnectWallet({super.key});
 
   @override
   State<ConnectWallet> createState() => _ConnectWalletState();

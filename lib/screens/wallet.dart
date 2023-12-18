@@ -234,13 +234,7 @@ class _WalletScreenState extends State<WalletScreen> {
                           child: TabBarView(
                             children: [
                               Container(child: dListTile()),
-                              Container(
-                                  child: WaitList(
-                                expenseDetails: widget
-                                    .expenseDetails, // Pass received expenseDetails
-                                iconPath:
-                                    widget.iconPath ?? 'assets/default.png',
-                              )),
+                              Container(child: WaitList()),
                             ],
                           ),
                         ),

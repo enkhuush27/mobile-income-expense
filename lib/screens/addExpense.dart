@@ -16,8 +16,6 @@ class AddExpense extends StatefulWidget {
 
 class _AddExpenseState extends State<AddExpense> {
   String dropdownValue = list.first;
-  late DateTime selectedDate;
-  late ExpenseDetails expenseDetails;
 
   Map<String, String> iconMapping = {
     'Netflix': 'assets/netflix.png',
@@ -153,13 +151,7 @@ class _AddExpenseState extends State<AddExpense> {
                             SizedBox(
                               height: 10,
                             ),
-                            DatePickerTextField(
-                              onDateSelected: (DateTime date) {
-                                setState(() {
-                                  selectedDate = date;
-                                });
-                              },
-                            ),
+                            DatePickerTextField(),
                             SizedBox(
                               height: 20,
                             ),
@@ -199,19 +191,9 @@ class _AddExpenseState extends State<AddExpense> {
                                 ),
                               ),
                               onTap: () {
-                                expenseDetails = ExpenseDetails(
-                                  platform: dropdownValue,
-                                  expenseAmount: 0.0,
-                                  date: selectedDate,
-                                );
-
-                                String iconPath = iconMapping[dropdownValue] ??
-                                    'assets/default.png';
                                 Navigator.of(context).push(
                                   MaterialPageRoute(
-                                    builder: (context) => WalletScreen(
-                                        expenseDetails: expenseDetails,
-                                        iconPath: iconPath),
+                                    builder: (context) => WalletScreen(),
                                   ),
                                 );
                               },

@@ -4,10 +4,8 @@ import 'package:income_expense/screens/connectWallet.dart';
 
 class WaitList extends StatelessWidget {
   final ExpenseDetails? expenseDetails;
-  final String iconPath;
 
-  const WaitList({Key? key, this.expenseDetails, required this.iconPath})
-      : super(key: key);
+  const WaitList({Key? key, this.expenseDetails}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,14 +16,14 @@ class WaitList extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
         ),
         child: Image.asset(
-          iconPath, // Use the provided iconPath
+          "",
           width: 50,
           height: 50,
         ),
       ),
-      title: Text(expenseDetails?.platform ?? ''),
+      title: Text(""),
       subtitle: Text(
-        expenseDetails?.date.toString() ?? '',
+        "",
         style: TextStyle(fontWeight: FontWeight.w400),
       ),
       trailing: Container(

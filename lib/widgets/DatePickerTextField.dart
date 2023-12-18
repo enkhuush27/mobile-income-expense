@@ -2,10 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class DatePickerTextField extends StatefulWidget {
-  final Function(DateTime) onDateSelected;
-
-  DatePickerTextField({required this.onDateSelected});
-
   @override
   _DatePickerTextFieldState createState() => _DatePickerTextFieldState();
 }
@@ -30,7 +26,6 @@ class _DatePickerTextFieldState extends State<DatePickerTextField> {
     if (picked != null) {
       String formattedDate = DateFormat("d MMM yyyy").format(picked);
       _dateController.text = formattedDate;
-      widget.onDateSelected(picked);
     }
   }
 

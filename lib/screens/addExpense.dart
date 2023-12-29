@@ -1,10 +1,12 @@
+// ignore_for_file: unused_import
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:income_expense/model/ExpenseDetails.dart';
+import 'package:intl/intl.dart';
 import 'package:income_expense/screens/wallet.dart';
 import 'package:income_expense/widgets/header.dart';
-import 'package:income_expense/widgets/DatePickerTextField.dart';
 
 const List<String> list = ['Netflix', "Youtube", "Upwork"];
 
@@ -16,6 +18,8 @@ class AddExpense extends StatefulWidget {
 }
 
 class _AddExpenseState extends State<AddExpense> {
+  late TextEditingController _dateController;
+  late TextEditingController _amountController;
   String dropdownValue = list.first;
 
   Map<String, String> iconMapping = {
@@ -25,22 +29,28 @@ class _AddExpenseState extends State<AddExpense> {
   };
 
   @override
-  Widget build(BuildContext context) {
-    final TextEditingController _amountController = TextEditingController();
-    CollectionReference bills = FirebaseFirestore.instance.collection('bill');
+  void initState() {
+    super.initState();
+    _dateController = TextEditingController();
+    _amountController = TextEditingController();
+  }
 
-    Future<void> addBill() async {
-      try {
-        await bills.add({});
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2101),
+    );
 
-        setState(() {});
-
-        print("Bill added successfully");
-      } catch (error) {
-        print("Failed to add card: $error");
-      }
+    if (picked != null) {
+      String formattedDate = DateFormat("d MMM yyyy").format(picked);
+      _dateController.text = formattedDate;
     }
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         extendBodyBehindAppBar: true,
@@ -168,7 +178,30 @@ class _AddExpenseState extends State<AddExpense> {
                             SizedBox(
                               height: 10,
                             ),
-                            DatePickerTextField(),
+                            TextField(
+                              controller: _dateController,
+                              readOnly: true,
+                              onTap: () => _selectDate(context),
+                              decoration: InputDecoration(
+                                suffixIcon: Icon(Icons.calendar_today),
+                                hintText: "Tue, 22 Feb 2022",
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10)),
+                                  borderSide: BorderSide(
+                                    color: Color(0xFF438883),
+                                  ),
+                                ),
+                                border: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Color(0xFFDDDDDD),
+                                  ),
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(10),
+                                  ),
+                                ),
+                              ),
+                            ),
                             SizedBox(
                               height: 20,
                             ),
@@ -207,12 +240,48 @@ class _AddExpenseState extends State<AddExpense> {
                                   ],
                                 ),
                               ),
-                              onTap: () {
-                                Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    builder: (context) => WalletScreen(),
-                                  ),
-                                );
+                              onTap: () async {
+                                String expenseName = dropdownValue;
+                                String expenseAmount = _amountController.text;
+                                String expenseDate = _dateController.text;
+                                String expenseStatus = "Pending";
+
+                                CollectionReference bills = FirebaseFirestore
+                                    .instance
+                                    .collection('bill');
+
+                                Map<String, dynamic> expenseData = {
+                                  'platform': expenseName,
+                                  'amount': expenseAmount,
+                                  'date': expenseDate,
+                                  'status': expenseStatus,
+                                };
+                                try {
+                                  await bills.add(expenseData);
+
+                                  Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => WalletScreen()),
+                                  );
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                        content:
+                                            Text('Expense added successfully')),
+                                  );
+
+                                  _amountController.clear();
+                                  _dateController.clear();
+                                  setState(() {
+                                    dropdownValue = list.first;
+                                  });
+                                } catch (e) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                        content: Text('Failed to add expense')),
+                                  );
+                                  print('Error: $e');
+                                }
                               },
                             ),
                           ],

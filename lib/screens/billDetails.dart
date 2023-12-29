@@ -5,7 +5,16 @@ import 'package:income_expense/widgets/bottomNav.dart';
 import 'package:income_expense/widgets/header.dart';
 
 class BillDetails extends StatefulWidget {
-  const BillDetails({super.key});
+  final String total;
+  final String platform;
+  final String date;
+  final String status;
+  const BillDetails(
+      {required this.total,
+      super.key,
+      required this.platform,
+      required this.date,
+      required this.status});
 
   @override
   State<BillDetails> createState() => _BillDetailsState();
@@ -13,6 +22,11 @@ class BillDetails extends StatefulWidget {
 
 class _BillDetailsState extends State<BillDetails> {
   int selectedTileIndex = -1;
+  Map<String, String> iconMapping = {
+    'Netflix': 'assets/netflix.png',
+    'Youtube': 'assets/youtube.png',
+    'Upwork': 'assets/upwork.png',
+  };
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -40,19 +54,21 @@ class _BillDetailsState extends State<BillDetails> {
                               color: Color(0xFFFAFAFA),
                               borderRadius: BorderRadius.circular(25)),
                           child: Transform.scale(
-                              scale: 0.5,
+                              scale: 0.8,
                               child: Image(
-                                  image: AssetImage('assets/logo-3.png'))),
+                                  image: AssetImage(
+                                      iconMapping[widget.platform] ??
+                                          'assets/default.png'))),
                         ),
                         title: Text(
-                          "Youtube Premium",
+                          "${widget.platform}",
                           style: TextStyle(
                               color: Color(0xFF000000),
                               fontWeight: FontWeight.w600,
                               fontSize: 18),
                         ),
                         subtitle: Text(
-                          "Feb 28, 2022",
+                          "${widget.date}",
                           style: TextStyle(
                               color: Color(0xFF666666),
                               fontWeight: FontWeight.w400),
@@ -69,7 +85,7 @@ class _BillDetailsState extends State<BillDetails> {
                                 fontWeight: FontWeight.w500),
                           ),
                           Text(
-                            "\$ 11.99",
+                            "\$ ${widget.total}",
                             style: TextStyle(
                                 color: Color(0xFF000000),
                                 fontWeight: FontWeight.w500,
@@ -89,7 +105,7 @@ class _BillDetailsState extends State<BillDetails> {
                                 fontWeight: FontWeight.w500),
                           ),
                           Text(
-                            "\$ 1,99",
+                            "\$ 0",
                             style: TextStyle(
                                 color: Color(0xFF000000),
                                 fontWeight: FontWeight.w500,
@@ -117,7 +133,7 @@ class _BillDetailsState extends State<BillDetails> {
                                 fontWeight: FontWeight.w500),
                           ),
                           Text(
-                            "\$ 13.98",
+                            "\$ ${widget.total}",
                             style: TextStyle(
                                 color: Color(0xFF000000),
                                 fontWeight: FontWeight.w500,
@@ -221,7 +237,11 @@ class _BillDetailsState extends State<BillDetails> {
                       ElevatedButton(
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => BillPayment(),
+                            builder: (context) => BillPayment(
+                                date: widget.date,
+                                platform: widget.platform,
+                                status: widget.status,
+                                total: widget.total),
                           ));
                         },
                         style: ElevatedButton.styleFrom(

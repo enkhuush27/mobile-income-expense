@@ -13,37 +13,34 @@ class _dListTileState extends State<dListTile> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: ListView.builder(
-        itemCount: 4,
-        itemBuilder: (context, index) => ListTile(
-          leading: Container(
-            decoration: BoxDecoration(
-              color: Color(0xFFF0F6F5),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Transform.scale(
-              scale: 0.75,
-              child: Image(
-                alignment: Alignment.center,
-                image: AssetImage("assets/logo-$index.png"),
-                width: 50,
-                height: 50,
-              ),
+      child: ListTile(
+        leading: Container(
+          decoration: BoxDecoration(
+            color: Color(0xFFF0F6F5),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Transform.scale(
+            scale: 0.75,
+            child: Image(
+              alignment: Alignment.center,
+              image: AssetImage(""),
+              width: 50,
+              height: 50,
             ),
           ),
-          title: Text(title[index]),
-          subtitle: Text(
-            "Өнөөдөр",
-            style: TextStyle(fontWeight: FontWeight.w400),
-          ),
-          trailing: Text(
-            "+ \$ 850.00",
-            textAlign: TextAlign.end,
-            style: TextStyle(
-              color: Color(0xFF25A969),
-              fontSize: 18,
-              fontWeight: FontWeight.w500,
-            ),
+        ),
+        title: Text(""),
+        subtitle: Text(
+          "",
+          style: TextStyle(fontWeight: FontWeight.w400),
+        ),
+        trailing: Text(
+          "",
+          textAlign: TextAlign.end,
+          style: TextStyle(
+            color: Color(0xFF25A969),
+            fontSize: 18,
+            fontWeight: FontWeight.w500,
           ),
         ),
       ),

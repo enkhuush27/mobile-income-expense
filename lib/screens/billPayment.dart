@@ -1,17 +1,34 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:income_expense/screens/billPayment_2.dart';
+import 'package:income_expense/screens/wallet.dart';
 import 'package:income_expense/widgets/body.dart';
 import 'package:income_expense/widgets/bottomNav.dart';
 import 'package:income_expense/widgets/header.dart';
 
 class BillPayment extends StatefulWidget {
-  const BillPayment({super.key});
+  final String total;
+  final String status;
+  final String date;
+  final String platform;
+  const BillPayment(
+      {super.key,
+      required this.total,
+      required this.status,
+      required this.platform,
+      required this.date});
 
   @override
   State<BillPayment> createState() => _BillPaymentState();
 }
 
 class _BillPaymentState extends State<BillPayment> {
+  Map<String, String> iconMapping = {
+    'Netflix': 'assets/netflix.png',
+    'Youtube': 'assets/youtube.png',
+    'Upwork': 'assets/upwork.png',
+  };
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -35,9 +52,11 @@ class _BillPaymentState extends State<BillPayment> {
                             color: Color(0xFFFAFAFA),
                             borderRadius: BorderRadius.circular(30)),
                         child: Transform.scale(
-                            scale: 0.5,
-                            child:
-                                Image(image: AssetImage('assets/logo-3.png'))),
+                            scale: 0.8,
+                            child: Image(
+                                image: AssetImage(
+                                    iconMapping[widget.platform] ??
+                                        'assets/default.png'))),
                       ),
                       SizedBox(
                         height: 10,
@@ -54,7 +73,7 @@ class _BillPaymentState extends State<BillPayment> {
                                 color: Colors.black),
                           ),
                           Text(
-                            "Youtube Premium",
+                            "${widget.platform}",
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 fontSize: 20,
@@ -85,7 +104,7 @@ class _BillPaymentState extends State<BillPayment> {
                                 fontWeight: FontWeight.w500),
                           ),
                           Text(
-                            "\$ 11.99",
+                            "\$ ${widget.total}",
                             style: TextStyle(
                                 color: Color(0xFF000000),
                                 fontWeight: FontWeight.w500,
@@ -105,7 +124,7 @@ class _BillPaymentState extends State<BillPayment> {
                                 fontWeight: FontWeight.w500),
                           ),
                           Text(
-                            "\$ 1,99",
+                            "\$ 0",
                             style: TextStyle(
                                 color: Color(0xFF000000),
                                 fontWeight: FontWeight.w500,
@@ -133,7 +152,7 @@ class _BillPaymentState extends State<BillPayment> {
                                 fontWeight: FontWeight.w500),
                           ),
                           Text(
-                            "\$ 13.98",
+                            "\$ ${widget.total}",
                             style: TextStyle(
                                 color: Color(0xFF000000),
                                 fontWeight: FontWeight.w500,
@@ -145,10 +164,54 @@ class _BillPaymentState extends State<BillPayment> {
                         height: 200,
                       ),
                       ElevatedButton(
-                        onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => BillPaymentNext(),
-                          ));
+                        onPressed: () async {
+                          CollectionReference bills =
+                              FirebaseFirestore.instance.collection('bill');
+
+                          QuerySnapshot querySnapshot = await bills
+                              .where('platform', isEqualTo: widget.platform)
+                              .where('date', isEqualTo: widget.date)
+                              .get();
+
+                          if (querySnapshot.docs.isNotEmpty) {
+                            querySnapshot.docs.forEach((doc) {
+                              doc.reference
+                                  .update({'status': 'PAID'}).then((value) {
+                                print('Document updated successfully!');
+                              }).catchError((error) {
+                                print('Failed to update document: $error');
+                              });
+                            });
+                          } else {
+                            print('Document not found!');
+                          }
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => WalletScreen(
+                                date: widget.date,
+                                platform: widget.platform,
+                              ),
+                            ),
+                          );
+                          DocumentSnapshot accountDoc = await FirebaseFirestore
+                              .instance
+                              .collection('account')
+                              .doc('accounts')
+                              .get();
+
+                          int currentTotal = accountDoc['total'] ?? 0;
+
+                          int newTotal = currentTotal - int.parse(widget.total);
+                          await FirebaseFirestore.instance
+                              .collection('account')
+                              .doc('accounts')
+                              .update({'total': newTotal}).then((_) {
+                            print('Expense subtracted successfully!');
+
+                            setState(() {});
+                          }).catchError((error) {
+                            print('Failed to subtract expense: $error');
+                          });
                         },
                         style: ElevatedButton.styleFrom(
                             shape: RoundedRectangleBorder(

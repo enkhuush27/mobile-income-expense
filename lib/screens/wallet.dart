@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:income_expense/model/ExpenseDetails.dart';
+import 'package:income_expense/screens/billDetails.dart';
 import 'package:income_expense/screens/connectWallet.dart';
 import 'package:income_expense/widgets/bottomNav.dart';
 import 'package:income_expense/widgets/header.dart';
@@ -9,7 +10,9 @@ import 'package:income_expense/widgets/waitingList.dart';
 import 'package:income_expense/screens/home.dart';
 
 class WalletScreen extends StatefulWidget {
-  const WalletScreen({super.key});
+  final String? date;
+  final String? platform;
+  const WalletScreen({this.date, this.platform, super.key});
 
   @override
   State<WalletScreen> createState() => _WalletScreenState();
@@ -19,6 +22,14 @@ class _WalletScreenState extends State<WalletScreen> {
   int? balance = 0;
   int? income = 0;
   int? expense = 0;
+
+  Map<String, String> iconMapping = {
+    'Netflix': 'assets/netflix.png',
+    'Youtube': 'assets/youtube.png',
+    'Upwork': 'assets/upwork.png',
+  };
+
+  CollectionReference bills = FirebaseFirestore.instance.collection('bill');
 
   @override
   void initState() {
@@ -257,8 +268,164 @@ class _WalletScreenState extends State<WalletScreen> {
                           height: 300,
                           child: TabBarView(
                             children: [
-                              //Container(child: dListTile()),
-                              //Container(child: WaitList()),
+                              Container(
+                                child: StreamBuilder<QuerySnapshot>(
+                                  stream: FirebaseFirestore.instance
+                                      .collection('bill')
+                                      .where('platform',
+                                          isEqualTo: widget.platform)
+                                      .where('date', isEqualTo: widget.date)
+                                      .snapshots(),
+                                  builder: (BuildContext context,
+                                      AsyncSnapshot<QuerySnapshot> snapshot) {
+                                    if (snapshot.hasError) {
+                                      return Text('Error: ${snapshot.error}');
+                                    }
+
+                                    if (snapshot.connectionState ==
+                                        ConnectionState.waiting) {
+                                      return CircularProgressIndicator();
+                                    }
+
+                                    if (snapshot.hasData &&
+                                        snapshot.data!.docs.isNotEmpty) {
+                                      var updatedPayment =
+                                          snapshot.data!.docs.first;
+                                      String platform =
+                                          updatedPayment['platform'];
+                                      String amount = updatedPayment['amount'];
+                                      String date = updatedPayment['date'];
+                                      String status = updatedPayment['status'];
+
+                                      return ListTile(
+                                        leading: Container(
+                                          decoration: BoxDecoration(
+                                            color: Color(0xFFF0F6F5),
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                          ),
+                                          child: Transform.scale(
+                                            scale: 0.75,
+                                            child: Image(
+                                              alignment: Alignment.center,
+                                              image: AssetImage(
+                                                  iconMapping[platform] ??
+                                                      'assets/default.png'),
+                                              width: 50,
+                                              height: 50,
+                                            ),
+                                          ),
+                                        ),
+                                        title: Text(platform),
+                                        subtitle: Text(
+                                          '$date',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w400),
+                                        ),
+                                        trailing: Text(
+                                          "\$ ${amount}",
+                                          textAlign: TextAlign.end,
+                                          style: TextStyle(
+                                            color: Color(0xFF25A969),
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      );
+                                    } else {
+                                      return Text('No updated data found.');
+                                    }
+                                  },
+                                ),
+                              ),
+                              Container(
+                                child: StreamBuilder<QuerySnapshot>(
+                                  stream: FirebaseFirestore.instance
+                                      .collection('bill')
+                                      .snapshots(),
+                                  builder: (BuildContext context,
+                                      AsyncSnapshot<QuerySnapshot> snapshot) {
+                                    if (snapshot.hasError) {
+                                      return Text('Error: ${snapshot.error}');
+                                    }
+
+                                    if (snapshot.connectionState ==
+                                        ConnectionState.waiting) {
+                                      return CircularProgressIndicator();
+                                    }
+
+                                    if (snapshot.hasData &&
+                                        snapshot.data!.docs.isNotEmpty) {
+                                      return ListView.builder(
+                                        itemCount: snapshot.data!.docs.length,
+                                        itemBuilder:
+                                            (BuildContext context, int index) {
+                                          var expense =
+                                              snapshot.data!.docs[index];
+                                          String platform = expense['platform'];
+                                          String amount = expense['amount'];
+                                          String date = expense['date'];
+                                          String status = expense['status'];
+
+                                          return ListTile(
+                                            leading: Container(
+                                              decoration: BoxDecoration(
+                                                color: Color(0xFFF0F6F5),
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                              ),
+                                              child: Image.asset(
+                                                iconMapping[platform] ??
+                                                    'assets/default.png',
+                                                width: 50,
+                                                height: 50,
+                                              ),
+                                            ),
+                                            title: Text(platform),
+                                            subtitle: Text(
+                                              '$date',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.w400),
+                                            ),
+                                            trailing: Container(
+                                              width: 90,
+                                              height: 35,
+                                              decoration: BoxDecoration(
+                                                color: Color(0xFFECF9F8),
+                                                borderRadius:
+                                                    BorderRadius.circular(20),
+                                              ),
+                                              alignment: Alignment.center,
+                                              child: TextButton(
+                                                onPressed: () {
+                                                  Navigator.of(context)
+                                                      .push(MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        BillDetails(
+                                                      status: status,
+                                                      date: date,
+                                                      platform: platform,
+                                                      total: amount,
+                                                    ),
+                                                  ));
+                                                },
+                                                child: Text(
+                                                  'Төлөх',
+                                                  style: TextStyle(
+                                                      color: Color(0xFF438883),
+                                                      fontSize: 16),
+                                                ),
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      );
+                                    } else {
+                                      return Text('No expenses found.');
+                                    }
+                                  },
+                                ),
+                              ),
                             ],
                           ),
                         ),
